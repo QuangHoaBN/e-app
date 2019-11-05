@@ -1,0 +1,33 @@
+var DropzoneDemo={
+    init:function(){
+        Dropzone.options.mDropzoneOne={
+            paramName:"file",
+            maxFiles:10,
+            maxFilesize:10,
+            addRemoveLinks:!0,
+            acceptedFiles:"image/*,application/pdf,.doc,.docx",
+        },
+        Dropzone.options.mDropzoneTwo={
+            paramName:"file",
+            maxFiles:10,
+            maxFilesize:10,
+            addRemoveLinks:!0,
+            acceptedFiles:"image/*,application/pdf,.doc,.docx",
+        },
+        Dropzone.options.mDropzoneThree={
+            paramName:"file",
+            maxFiles:10,
+            maxFilesize:10,
+            addRemoveLinks:!0,
+            acceptedFiles:"image/*,application/pdf,.doc,.docx",
+        }
+        Dropzone.options.mDropzoneFour={
+            paramName:"file",
+            maxFiles:10,
+            maxFilesize:10,
+            addRemoveLinks:!0,
+            acceptedFiles:"image/*,application/pdf,.doc,.docx",
+        }
+    }
+};
+DropzoneDemo.init();

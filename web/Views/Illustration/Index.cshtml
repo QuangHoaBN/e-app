@@ -1,0 +1,1107 @@
+﻿@model EApp.Model.FormBMHIllustrationModel
+@using EApp.Utils;
+@{
+    Layout = "~/Views/Shared/_LayoutCommom.cshtml";
+}
+
+@Html.Action("StepsForm", "Illustration")
+
+<!-- END: Header -->
+<!-- begin::Body -->
+<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body illustration-form">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <div class="m-content">
+            <form class="m-form m-form--fit" id="frmIllustration" method="post">
+                <input type="hidden" name="Do" id="Do" value="Add" />
+                <input type="hidden" name="Code" id="Code" value="@Model.Code" />
+                <div class="container">
+                    <div class="m-aside">
+                        <div class="m-aside-box">
+                            <button type="button" class="btn btn-nav"><i class="la la-align-left icon"></i></button>
+                            <div class="nav-content">
+                                <div class="icon">
+                                    <i class="la la-align-left"></i>
+                                    <i class="la la-close" id="close-nav"></i>
+                                </div>
+                                <div class="list">
+                                    <ul>
+                                        <li><a href="javascript:void(0)" onclick="goToByScroll('#section1')">Người được bảo hiểm</a></li>
+                                        <li><a href="javascript:void(0)" onclick="goToByScroll('#section2')">Bên mua bảo hiểm</a></li>
+                                        <li><a href="javascript:void(0)" onclick="goToByScroll('#section3')">Sản phẩm</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-content-box">
+                        <div class="m-portlet page-header">
+                            <div class="m-portlet__body">
+                                <h4>Thông tin cá nhân</h4>
+                            </div>
+                        </div>
+                        <div class="m-portlet page-content-box" id="section1">
+                            <div class="page-content-box-title">
+                                <h5>Thông tin người được bảo hiểm</h5>
+                            </div>
+
+                            <div class="m-portlet__body">
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <label for="txtFullname" class="m-form-label">Họ tên Người được bảo hiểm (chữ in hoa)<span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input uppercase" id="BeneficiaryFullName" name="BeneficiaryFullName" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Mối quan hệ với Bên mua bảo hiểm<span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" name="BeneficiaryPersonRelationshipId" id="BeneficiaryPersonRelationshipId">
+                                            @foreach (var item in Model.PersonRelationshipModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <label for="" class="m-form-label">Giới tính<span class="required">*</span></label>
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio">
+                                                <input type="radio" id="BeneficiaryGender" name="BeneficiaryGender" value="1"> Nam
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" name="BeneficiaryGender" value="0"> Nữ
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-2 col-md-4 col-sm-6">
+                                        <label for="exampleInpuName" class="m-form-label">Ngày sinh<span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input datebirth m_datepicker_beneficiary" data-control-age-name="#beneficiaryAge" data-control-age="#age1" readonly="" placeholder="Chọn ngày" id="BeneficiaryBirth" name="BeneficiaryBirth">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar-check-o"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-4 col-sm-6">
+                                        <label class="m-form-label">Tuổi<span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" disabled="" placeholder="" id="age1">
+                                        <input type="text" class="form-control m-input" disabled="" hidden placeholder="" id="beneficiaryAge" name="BeneficiaryAge">
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Loại giấy tờ tùy thân<span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="" id="BeneficiaryIdentityTypeId" name="BeneficiaryIdentityTypeId">
+                                            @foreach (var item in Model.IdentityTypeModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Số giấy tờ tùy thân<span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input input-number" placeholder="" id="BeneficiaryIdentityNum" name="BeneficiaryIdentityNum">
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="exampleInpuName">Ngày cấp<span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input" readonly="" placeholder="Chọn ngày" id="BeneficiaryIdentityDate" name="BeneficiaryIdentityDate">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar-check-o"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-sm-6">
+                                        <label for="inputNoiCap" class="m-form-label">Nơi cấp <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="BeneficiaryIdentityPlace" name="BeneficiaryIdentityPlace" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-2 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="exampleInpuName">Quốc tịch<span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker beneficiaryCountry" id="BeneficiaryCountryId" name="BeneficiaryCountryId">
+                                            @foreach (var item in Model.CountryModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                        <input type="text" class="form-control m-input beneficiaryCountry-input hidden" placeholder="Nhập quốc tịch" name="BeneficiaryCountryOther">
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Tình trạng hôn nhân<span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker beneficiaryMarialStatus" id="BeneficiaryMarialStatusId" name="BeneficiaryMarialStatusId">
+                                            @foreach (var item in Model.MarialStatusModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                        <input type="text" class="form-control m-input beneficiaryMarialStatus-input hidden" placeholder="Nhập tình trạng hôn nhân" name="BeneficiaryMarialStatusOther">
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-sm-6">
+                                        <label class="m-form-label occupational_group" for="">
+                                            Nhóm nghề <i class="la la-info-circle info-occupational"></i> <span class="required">*</span>
+                                            <div class="occupational_group_popup">
+                                                @foreach (var item in Model.CareerGroupModels)
+                                                {
+                                                    <p><strong>@item.Name: </strong>@Html.Raw(item.Description)</p>
+                                                }
+                                            </div>
+                                        </label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" id="BeneficiaryCareerGroupId" name="BeneficiaryCareerGroupId">
+                                            @foreach (var item in Model.CareerGroupModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Chi tiết nghành nghề <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" placeholder="" id="BeneficiaryCareerDetail" name="BeneficiaryCareerDetail">
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Nơi làm việc <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" placeholder="" id="BeneficiaryWorkPlace" name="BeneficiaryWorkPlace">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Thu nhập trung bình năm <span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input price-input" placeholder="" id="BeneficiaryIncomeAverage">
+                                            <input type="hidden" name="BeneficiaryIncomeAverage" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    VNĐ
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Email</label>
+                                        <input type="email" class="form-control m-input" placeholder="" id="BeneficiaryEmail" name="BeneficiaryEmail">
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <label class="m-form-label" for="">Địa chỉ thường trú (theo sổ hộ khẩu) <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" placeholder="" id="BeneficiaryAndressPermanent" name="BeneficiaryAndressPermanent">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label phone1" for="">Số điện thoại 1 <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input input-number" placeholder="" id="BeneficiaryPhone1" name="BeneficiaryPhone1">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Số điện thoại 2 </label>
+                                        <input type="text" class="form-control m-input input-number" placeholder="" id="BeneficiaryPhone2" name="BeneficiaryPhone2">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="illustration-form-button action-form action-middle">
+                            <div class="row actionBH-button">
+                                <div class="col-md-4"><button type="button" class="btn btn-lg btn-secondary btn-block uppercase" id="personalbuyBH">Bên mua bảo hiểm khác NĐBH</button></div>
+                                <div class="col-md-4"><button type="button" class="btn btn-lg btn-secondary btn-block uppercase active" id="samebuyBH">Bên mua bảo hiểm là NĐBH</button></div>
+                                <div class="col-md-4"><button type="button" class="btn btn-lg btn-secondary btn-block uppercase" id="groupbuyBH">Bên mua bảo hiểm là tổ chức</button></div>
+                                <input type="hidden" id="TypeBuyInsurance" name="TypeBuyInsurance" value="1" />
+                            </div>
+                        </div>
+                        <div class="m-portlet page-content-box personalbuyBH" id="section2">
+                            <div class="page-content-box-title">
+                                <h5>Thông tin bên mua bảo hiểm</h5>
+                                <div class="form-group m-form__group ">
+                                    <label class="">1. Bên mua bảo hiểm là cá nhân</label>
+                                </div>
+                            </div>
+
+                            <div class="m-portlet__body">
+                                <div class="m-portlet-disabled disabled">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <div class="form-box">
+                                                <label class="m-form-label" for="txtFullname">Họ tên Bên mua bảo hiểm (chữ in hoa)<span class="required">*</span></label>
+                                                <input type="text" class="form-control m-input uppercase" id="BuyFullname" name="BuyFullname" aria-describedby="emailHelp" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <label class="m-form-label" for="">Mối quan hệ với Người được bảo hiểm<span class="required">*</span></label>
+                                            <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" name="BuyPersonRelationshipId" id="BuyPersonRelationshipId">
+                                                @foreach (var item in Model.PersonRelationshipModels)
+                                                {
+                                                    <option value="@item.ID">@item.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <label class="m-form-label" for="">Giới tính<span class="required">*</span></label>
+                                            <div class="m-radio-inline">
+                                                <label class="m-radio">
+                                                    <input type="radio" id="BuyGender" name="BuyGender" value="1"> Nam
+                                                    <span></span>
+                                                </label>
+                                                <label class="m-radio">
+                                                    <input type="radio" name="BuyGender" value="0"> Nữ
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-2 col-md-6 col-sm-6">
+                                            <label class="m-form-label" for="exampleInpuName">Ngày sinh<span class="required">*</span></label>
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control m-input datebirth m_datepicker" data-control-age="#age2" data-control-age-name="#buyAge" readonly="" placeholder="Chọn ngày" id="BuyBirthDay" name="BuyBirthDay">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="la la-calendar-check-o"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1 col-md-4 col-sm-6">
+                                            <label class="m-form-label">Tuổi<span class="required">*</span></label>
+                                            <input type="text" class="form-control m-input" disabled="" placeholder="" id="age2">
+                                            <input type="text" class="form-control m-input" disabled="" hidden placeholder="" id="buyAge" name="BuyAge">
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <label class="m-form-label" for="">Loại giấy tờ tùy thân</label>
+                                            <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" id="BuyIdentityTypeId" name="BuyIdentityTypeId">
+                                                @foreach (var item in Model.IdentityTypeModels)
+                                                {
+                                                    <option value="@item.ID">@item.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2 col-md-4 col-sm-6">
+                                            <label class="m-form-label" for="">Số giấy tờ tùy thân<span class="required">*</span></label>
+                                            <input type="text" class="form-control m-input input-number" placeholder="" name="BuyIdentityNum" id="BuyIdentityNum">
+                                        </div>
+                                        <div class="col-lg-2 col-md-4 col-sm-6">
+                                            <label class="m-form-label" for="exampleInpuName">Ngày cấp<span class="required">*</span></label>
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control m-input" readonly="" placeholder="Chọn ngày" id="BuyIdentityDate" name="BuyIdentityDate">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="la la-calendar-check-o"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-4 col-sm-6">
+                                            <label class="m-form-label" for="inputNoiCap">Nơi cấp <span class="required">*</span></label>
+                                            <input type="text" class="form-control m-input" id="BuyIdentityPlace" name="BuyIdentityPlace" aria-describedby="emailHelp" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-2 col-md-4 col-sm-6">
+                                            <label class="m-form-label" for="exampleInpuName">Quốc tịch<span class="required">*</span></label>
+                                            <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker buyCountry" title="" id="BuyCountryId" name="BuyCountryId">
+                                                @foreach (var item in Model.CountryModels)
+                                                {
+                                                    <option value="@item.ID">@item.Name</option>
+                                                }
+                                            </select>
+                                            <input type="text" class="form-control m-input buyCountry-input hidden" placeholder="Nhập quốc tịch" name="buyCountryOther">
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <label class="m-form-label" for="">Tình trạng hôn nhân <span class="required">*</span></label>
+                                            <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker buyMarialStatus" title="" id="BuyMarialStatusId" name="BuyMarialStatusId">
+                                                @foreach (var item in Model.MarialStatusModels)
+                                                {
+                                                    <option value="@item.ID">@item.Name</option>
+                                                }
+                                            </select>
+                                            <input type="text" class="form-control m-input buyMarialStatus-input hidden" placeholder="Nhập tình trạng hôn nhân" name="buyMarialStatusOther">
+                                        </div>
+                                        <div class="col-lg-2 col-md-4 col-sm-6">
+                                            <label class="m-form-label occupational_group" for="">
+                                                Nhóm nghề  <i class="la la-info-circle info-occupational"></i> <span class="required">*</span>
+                                                <div class="occupational_group_popup">
+                                                    @foreach (var item in Model.CareerGroupModels)
+                                                    {
+                                                        <p><strong>@item.Name: </strong>@Html.Raw(item.Description)</p>
+                                                    }
+                                                </div>
+                                            </label>
+                                            <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="" id="BuyCareerGroupId" name="BuyCareerGroupId">
+                                                @foreach (var item in Model.CareerGroupModels)
+                                                {
+                                                    <option value="@item.ID">@item.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <label class="m-form-label" for="">Chi tiết nghành nghề <span class="required">*</span></label>
+                                            <input type="text" class="form-control m-input" placeholder="" id="BuyCareerDetail" name="BuyCareerDetail">
+                                        </div>
+                                        <div class="col-lg-2 col-md-6 col-sm-6">
+                                            <label class="m-form-label" for="">Nơi làm việc <span class="required">*</span></label>
+                                            <input type="text" class="form-control m-input" placeholder="" id="BuyWorkPlace" name="BuyWorkPlace">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <label class="m-form-label" for="">Thu nhập trung bình năm <span class="required">*</span></label>
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control m-input price-input" placeholder="" id="BuyIncomeAverage">
+                                                <input type="hidden" name="BuyIncomeAverage" />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        VNĐ
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <label class="m-form-label" for="">Email</label>
+                                            <input type="email" class="form-control m-input" placeholder="" name="BuyEmail" id="BuyEmail">
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12">
+                                            <label class="m-form-label" for="">Địa chỉ thường trú (theo sổ hộ khẩu) <span class="required">*</span></label>
+                                            <input type="text" class="form-control m-input" placeholder="" name="BuyAndressPermanent" id="BuyAndressPermanent">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Hiện Quý khách có khai báo thuế tại Hoa kỳ không? <span class="required">*</span></label>
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio">
+                                                <input type="radio" id="BuyTaxUs" name="BuyTaxUs" checked value="1"> Có
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" name="BuyTaxUs" value="0"> Không
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Địa chỉ liên lạc <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="BuyAndressContact" name="BuyAndressContact" placeholder="">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-md-6 row buy-phone-row disabled">
+                                        <div class="col-md-6">
+                                            <label class="m-form-label phone1" for="">Số điện thoại 1 <span class="required">*</span></label>
+                                            <input type="text" class="form-control m-input input-number" placeholder="" name="BuyPhone1" id="BuyPhone1">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="m-form-label" for="">Số điện thoại 2 </label>
+                                            <input type="text" class="form-control m-input input-number" placeholder="" name="BuyPhone2" id="BuyPhone2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="m-portlet page-content-box hidden groupbuyBH" id="">
+                            <div class="page-content-box-title">
+                                <h5>Thông tin bên mua bảo hiểm</h5>
+                                <div class="form-group m-form__group ">
+                                    <label class="">2. Bên mua bảo hiểm là Tổ chức</label>
+                                </div>
+                            </div>
+
+                            <div class="m-portlet__body">
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputCompany">Tên công ty (chữ in hoa) <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input uppercase" id="OrgannizationName" name="OrgannizationName" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputCompany">Số giấy phép kinh doanh <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="BusinessNum" name="BusinessNum" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="exampleInpuName">Ngày cấp <span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input" readonly="" name="DateOfLicense" id="DateOfLicense" placeholder="Chọn ngày">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar-check-o"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputNoiCap">Mã số thuế <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="TaxCode" name="TaxCode" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputNoiCap">Lĩnh vực hoạt động kinh doanh</label>
+                                        <input type="text" class="form-control m-input" id="BusinessAreas" name="BusinessAreas" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Hiện Quý khách có khai báo thuế tại Hoa Kỳ không? <span class="required">*</span></label>
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio">
+                                                <input type="radio" id="TaxUs" name="TaxUs" checked value="1"> Có
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" name="TaxUs" value="0"> Không
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Địa chỉ liên lạc <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="AndressContact" name="AndressContact" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Số điện thoại 1 <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input input-number" id="OrgannizationPhone1" name="OrgannizationPhone1" placeholder="">
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Số điện thoại 2 </label>
+                                        <input type="text" class="form-control m-input input-number" id="OrgannizationPhone2" name="OrgannizationPhone2" placeholder="">
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Email </label>
+                                        <input type="email" class="form-control m-input" id="OrgannizationEmail" name="OrgannizationEmail" placeholder="">
+                                    </div>
+                                </div>
+                                <h5 class="m-title">Thông tin người đại diện giao dịch</h5>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputCompany">Họ tên Người đại diện <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input uppercase" id="OrgannizationFullName" name="OrgannizationFullName" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputCompany">Ngày sinh <span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input m_datepicker" readonly="" placeholder="Ngày sinh" id="OrgannizationBirthDay" name="OrgannizationBirthDay">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar-check-o"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputCompany">Số Giấy tờ tùy thân <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input input-number" placeholder="" id="OrgannizationIdentityNum" name="OrgannizationIdentityNum">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputCompany">Ngày cấp <span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input" readonly="" placeholder="Ngày cấp" id="OrgannizationBirthDate" name="OrgannizationBirthDate">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar-check-o"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-2 col-md-6">
+                                        <label class="m-form-label" for="inputCompany">Nơi cấp <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="OrgannizationBirthPlace" name="OrgannizationBirthPlace" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="inputCompany">Địa chỉ thường trú (theo hộ khẩu) <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="OrgannizationAndressPermanent" name="OrgannizationAndressPermanent" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Số điện thoại <span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input input-number" placeholder="" id="OrgannizationPhone" name="OrgannizationPhone">
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Email</label>
+                                        <input type="email" class="form-control m-input" placeholder="" id="OrgEmail" name="OrgEmail">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="m-portlet page-content-box" id="section3">
+                            <div class="page-content-box-title">
+                                <h5>Sản phẩm bảo hiểm chính</h5>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Sản phẩm chính <span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" id="BMH_InsuranceId" name="BMH_InsuranceId">
+                                            @foreach (var item in Model.InsuranceModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Quyền lợi <span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="Lựa chọn quyền lợi" id="BMH_InterestId" name="BMH_InterestId">
+                                            @foreach (var item in Model.InterestModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6">
+                                        <label class="m-form-label" for="">Tuổi đáo hạn <span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="Lựa chọn tuổi đáo hạn" id="BMH_AgeExpireID" name="BMH_AgeExpireID">
+                                            @foreach (var item in Model.AgeExpireModels)
+                                            {
+                                                <option value="@item.ID">@Convert.ToInt32(item.Age)</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <label class="m-form-label" for="">Số tiền bảo hiểm <span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input price-input" placeholder="" id="BMH_Insurance_Total">
+                                            <input type="hidden" name="BMH_Insurance_Total" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    VNĐ
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <label class="m-form-label" for="">Hệ số bảo hiểm bổ sung <span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="" id="AdditionalInsuranceMoneID" name="AdditionalInsuranceMoneID">
+                                            @foreach (var item in Model.AdditionalInsuranceMoneyModels)
+                                            {
+                                                <option value="@item.ID">@item.Name</option>
+                                            }
+                                        </select>
+                                        <input type="hidden" name="AdditionalInsuranceMone" id="AdditionalInsuranceMone" value="1" />
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <label class="m-form-label" for="">Tổng số tiền bảo hiểm bổ sung</label>
+                                        <input type="text" class="form-control m-input" readonly id="BMH_Insurance_TotalMore" name="BMH_Insurance_TotalMore">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <label class="m-form-label" for="">Phí bảo hiểm cơ bản</label>
+                                        <input type="text" class="form-control m-inputr" readonly id="BMH_Insurance_FeeBase" value="0">
+                                        <input type="hidden" name="BMH_Insurance_FeeBase" />
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Thời hạn đóng phí cơ bản <span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input input-number" placeholder="" name="BMH_Insurance_DurationPaid" id="BMH_Insurance_DurationPaid">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Phí đóng thêm </label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input price-input" placeholder="" id="BMH_Insurance_FeeBaseMore">
+                                            <input type="hidden" name="BMH_Insurance_FeeBaseMore" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    VNĐ
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Thời hạn đóng phí thêm  <span class="">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input" placeholder="" name="BMH_Insurance_FeeTime" id="BMH_Insurance_FeeTime">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <label class="m-form-label" for="">Định kỳ đóng phí <span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="Chọn định kỳ đóng phí" id="BMH_Insurance_FeeRecuring" name="BMH_Insurance_FeeRecuring">
+                                            <option value="1">Nửa năm</option>
+                                            <option value="0">Một năm</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet page-content-box" id="section4">
+                            <div class="page-content-box-title">
+                                <h5>Sản phẩm bảo hiểm bổ trợ</h5>
+                                <div class="form-group m-form__group ">
+                                    <label class="">Khách được chọn nhiều sản phẩm bổ trợ</label>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <h5 class="m-title">Sản phẩm bổ trợ cho Người được bảo hiểm</h5>
+                                <input type="hidden" name="InsuranceMoreIds" id="InsuranceMoreIds" value="0" />
+                                <input type="hidden" name="InsuranceMoreCodes" id="InsuranceMoreCodes" value="" />
+                                @foreach (var item in Model.InsuranceMoreModels.Where(m => m.Type == (int)StaticEnum.InsuranceType.ReceiveInsurance))
+                                {
+                                    <div class="form-group m-form__group row m-form_group--no-padding-top">
+                                        <div class="col-lg-5 col-md-4 col-sm-4">
+                                            <div class="m-checkbox-inline">
+                                                <label class="m-checkbox">
+                                                    <input type="checkbox" name="InsuranceMoreId-@item.ID" class="InsuranceMoreId" value="@item.ID" data-code="@item.Code"> @item.Name
+                                                    <input type="hidden" name="InsuranceType-@item.ID" id="InsuranceType" value="@item.Type" />
+                                                    <input type="hidden" name="CodeInsurance-@item.ID" id="CodeInsurance" value="@item.Code" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @if (item.Code == "BHBT_NamVien")
+                                        {
+                                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                                <select class="form-control" data-code="@item.Code" title="Lựa chọn số tiền bảo hiểm" id="LuaChonTienBaoHiem" name="LuaChonTienBaoHiem" disabled>
+                                                    <option value="1">Lựa chọn 1 </option>
+                                                    <option value="2">Lựa chọn 2</option>
+                                                    <option value="3">Lựa chọn 3</option>
+                                                    <option value="4">Lựa chọn 4</option>
+                                                </select>
+                                                <p class="m-form__help" id="LuaChonTienBaoHiem_help">70.000 VNĐ/1 ngày nằm viện  142.000 VNĐ/năm</p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control m-input InputMoney price-input" readonly data-code="@item.Code" data-id="@item.ID" id="InputMoney-@item.Code" placeholder="Số tiền bảo hiểm">
+                                                    <input type="hidden" name="InputMoney-@item.Code" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">&nbsp;VNĐ</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+
+                                        <div class="col-lg-3 col-md-4 col-sm-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control m-input no-border text-right price-input" id="@item.Code" readonly value="0">
+                                                <input type="hidden" name="TotalMoney-@item.Code" />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text no-border">&nbsp;VNĐ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="spbt_bmbh hidden">
+                                    <hr class="no-border">
+                                    <h5 class="m-title">Sản phẩm bổ trợ cho Bên mua bảo hiểm</h5>
+                                    @foreach (var item in Model.InsuranceMoreModels.Where(m => m.Type == (int)StaticEnum.InsuranceType.BuyInsurance))
+                                    {
+                                        <div class="form-group m-form__group row m-form_group--no-padding-top">
+                                            <div class="col-lg-5 col-md-4 col-sm-4">
+                                                <div class="m-checkbox-inline">
+                                                    <label class="m-checkbox">
+                                                        <input type="checkbox" name="InsuranceMoreId-@item.ID" class="InsuranceMoreId" value="@item.ID" data-code="@item.Code"> @item.Name
+                                                        <input type="hidden" name="InsuranceType-@item.ID" id="InsuranceType" value="@item.Type" />
+                                                        <input type="hidden" name="CodeInsurance-@item.ID" id="CodeInsurance" value="@item.Code" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                                <label for="">Số tiền bảo hiểm</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control m-input InputMoney price-input" readonly data-code="@item.Code" data-id="@item.ID" id="InputMoney-@item.Code" placeholder="Số tiền bảo hiểm" value="10.000.000">
+                                                    <input type="hidden" name="InputMoney-@item.Code" value="10000000" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text no-border">&nbsp;VNĐ</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control m-input no-border text-right price-input" id="@item.Code" readonly value="0">
+                                                    <input type="hidden" name="TotalMoney-@item.Code" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text no-border">&nbsp;VNĐ</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="m-portlet page-content-box" id="section5">
+                            <div class="page-content-box-title">
+                                <h5>Tổng số phí bảo hiểm</h5>
+                            </div>
+                            <div class="m-portlet__body">
+                                <h5 class="m-title">Tổng chi phí bảo hiểm chính và bảo hiểm bổ trợ</h5>
+                                <div class="form-group m-form__group">
+                                    <label class="title-abs">Định kì đóng phí</label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control m-input" readonly placeholder="">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <span id="TotalInsuranceFeeRecuring" style="margin-right:5px;"></span>
+                                                Năm
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label class="title-abs">Phí bảo hiểm dự kiến <i class="la la-info-circle" data-toggle="m-popover" data-html="true" data-placement="top" data-content="Phí bảo hiểm dự kiến bao gồm Phí bảo hiểm định kỳ và Phí bảo hiểm đóng thêm (nếu có)."></i></label>
+                                    <input type="text" class="form-control m-input text-right no-border" readonly id="PhiBaoHiemDuKien" value="0">
+                                    <input type="hidden" name="PhiBaoHiemDuKien">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label class="title-abs">Tổng phí bảo hiểm Sản phẩm bổ trợ <i class="la la-info-circle" data-toggle="m-popover" data-placement="top" data-content="Tổng phí bảo hiểm Sản phẩm bổ trợ sẽ được thu tại kỳ phí đầu tiên sản phẩm chính nếu định kỳ đóng phí của sản phẩm chính là nửa năm. Tại kỳ phí thứ 2 của định kỳ phí nửa năm, Công ty chỉ thu phí bảo hiểm dự kiến tương ứng với định kỳ phí đóng phí "></i></label>
+                                    <input type="text" class="form-control m-input text-right no-border" readonly id="TongPhiBHBT" value="0">
+                                    <input type="hidden" name="TongPhiBHBT">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label class="title-abs">Tổng phí bảo hiểm dự kiến Sản phẩm chính và Sản phẩm bổ trợ</label>
+                                    <input type="text" class="form-control m-input text-right no-border" readonly value="0" id="TongPhiBHBT-SPC">
+                                    <input type="hidden" name="TongPhiBHBT-SPC">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body m-action_money">
+                            <div class="m-accordion m-accordion--default m-accordion--solid" id="m_accordion_3" role="tablist">
+                                <div class="m-accordion__item">
+                                    <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_3_item_1_head" data-toggle="collapse" href="#m_accordion_3_item_1_body" aria-expanded="false">
+                                        <span class="m-accordion__item-mode"></span>
+                                        <span class="m-accordion__item-title"> Kế hoạch rút tiền</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet page-content-box">
+                            <div class="m-accordion m-accordion--default m-accordion--solid" id="m_accordion_3" role="tablist">
+                                <div class="m-accordion__item-body collapse" id="m_accordion_3_item_1_body" role="tabpanel" aria-labelledby="m_accordion_3_item_1_head" data-parent="#m_accordion_3" style="">
+                                    <div class="m-accordion__item-content">
+                                        <table class="table text-center moneyBH form-group">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Năm hợp đồng</th>
+                                                    <th>Số tiền rút</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{ var arr = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; }
+                                                @foreach (var item in arr)
+                                                {
+                                                    <tr>
+                                                        <th class="text-light">@item</th>
+                                                        <td><input type="text" class="form-control m-input onlynumber contractYear" id="ContractYear-@item" data-code="@item"></td>
+                                                        <td><input type="text" class="form-control m-input onlynumber contractTotalMoney" id="ContractTotalMoney-@item" data-code="@item"></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <input type="hidden" name="ContractYear" />
+                                        <input type="hidden" name="TotalMoney" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="illustration-form-button action-form action-bottom">
+                            <button type="button" class="btn btn-secondary" id="view_pdf">Xem bảng minh họa</button>
+                            <button type="button" class="btn btn-secondary" id="illustration_pdf">In PDF</button>
+                            <button type="submit" class="btn btn-secondary" id="btnSave">Lưu</button>
+                            <button type="button" class="btn btn-secondary" id="illustration_save_send">Lưu và gửi email</button>
+                            <button type="button" class="btn btn-secondary" id="illustration_send_next">Gửi và Tiếp tục</button>
+                            <button type="button" class="btn btn-secondary" id="illustration_cancle">Hủy</button>
+                        </div>
+                        <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="alert alert-success" role="alert">
+                                            Thông tin của bạn đã được lưu
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Email TVV</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="form-control-label">Email Bên mua bảo hiểm</label>
+                                            <input type="text" class="form-control" id="email_ben_mua_BH">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="illustration_send_email">Gửi Email</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--begin::Modal-->
+<div class="modal fade" id="m_modal_1_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-container" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bảng minh họa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <embed frameBorder="0" src="" type="application/pdf" width="100%" height="600" id="embed_pdf" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script src="~/Content/js/common.js"></script>
+<script>
+    var bmh_url_pdf_file = "/Content/assets/pdf/BMH.pdf";
+    $("#frmIllustration").validate({
+        submitHandler: function () {
+            $.post("/Illustration/Actions", $("#frmIllustration").serialize(), function (msg) {
+                console.log("huyhuy", msg)
+                if (msg.StatusCode === "00") {
+                    //window.location.href = "/bang-minh-hoa"
+                    swal("", "Thông tin của bạn đã được lưu thành công!", "success");
+                }
+                else {
+                    $("#" + msg.Data).focus();
+                    swal({ title: "Có lỗi xảy ra !", text: msg.Message, type: "error", confirmButtonText: "Ok" });
+                }
+            });
+            return false;
+        }
+    });
+
+    $("#illustration_send_next").click(function () {
+        $.post("/Illustration/Actions", $("#frmIllustration").serialize(), function (msg) {
+            if (msg.StatusCode === "00") {
+                window.href = "/Content/application.html";
+            }
+            else {
+                $("#" + msg.Data).focus();
+                swal({ title: "Có lỗi xảy ra !", text: msg.Message, type: "error", confirmButtonText: "Ok" });
+            }
+        });
+    });
+
+    $("#illustration_save_send").click(function () {
+        $.post("/Illustration/Actions", $("#frmIllustration").serialize(), function (msg) {
+            if (msg.StatusCode === "00") {
+                $('#email_ben_mua_BH').val($('#BuyEmail').val());
+                $('#m_modal_4').modal('show');
+            }
+            else {
+                $("#" + msg.Data).focus();
+                swal({ title: "Có lỗi xảy ra !", text: msg.Message, type: "error", confirmButtonText: "Ok" });
+            }
+        });
+    });
+
+    $("#illustration_send_email").click(function () {
+        var email_TVV = $('#recipient-name').val();
+        var email_BMBH = $('#email_ben_mua_BH').val();
+        if (email_TVV.length > 0 || email_BMBH.length > 0) {
+            $.post("/Illustration/SendEmail", { "email_TVV": email_TVV, "email_BMBH": email_BMBH }, function (msg) {
+                $('#m_modal_4').modal('hide');
+                if (msg.IsError == false) {
+                    swal("", "Thông tin của bạn đã được lưu và gửi email thành công !", "success");
+                } else {
+                    swal({ title: "Quá trình gửi mail thất bại !", text: msg.Message, type: "error", confirmButtonText: "Ok" });
+                }
+            });
+        } else {
+            $('#email_ben_mua_BH').focus();
+            swal("", "Xin vui lòng nhập địa chỉ email !", "error");
+        }
+    });
+
+    $("#view_pdf").click(function () {
+        $.post("/Illustration/Actions", $("#frmIllustration").serialize(), function (msg) {
+            if (msg.StatusCode === "00") {
+                $("#m_modal_1_2").modal('show');
+                var Code = $("#Code").val();
+                var BuyFullName = $("#BuyFullname").val();
+                var BuyGender = $("input[name='BuyGender']").val();
+                var BuyAge = $("#age2").val();
+                var BuyBirthDay = $("input[name='BuyBirthDay']").val();
+                var BeneficiaryFullName = $("input[name='BeneficiaryFullName']").val();
+                var BeneficiaryGender = $("input[name='BeneficiaryGender']").val();
+                var BeneficiaryBirthDay = $("input[name='BeneficiaryBirth']").val();
+                var BeneficiaryAge = $("#age1").val();
+                var Insurance_Total = $("input[name='BMH_Insurance_Total']").val();
+                var Insurance_FeeBase = $("input[name='BMH_Insurance_FeeBase']").val();
+                var Insurance_FeeBaseMore = $("input[name='BMH_Insurance_FeeBaseMore']").val();
+                var InputMoney_BHBT_BenhHiemNgheo = $("input[name='InputMoney-BHBT_BenhHiemNgheo']").val();
+                var Fee_BHBT_BenhHiemNgheo = $("input[name='TotalMoney-BHBT_BenhHiemNgheo']").val();
+                var Fee_BHBT_NamVien = $("input[name='TotalMoney-BHBT_NamVien']").val();
+                var Fee_BHBT_BenhHiemNgheo_CI20 = $("input[name='TotalMoney-BHBT_BenhHiemNgheo_CI20']").val();
+                var InputMoney_BHBT_BenhHiemNgheo_CI20 = $("input[name='InputMoney-BHBT_BenhHiemNgheo_CI20']").val();
+                var Fee_BHBT_TV_TTTBVV = $("input[name='TotalMoney-BHBT_TV_TTTBV']").val();
+                var InputMoney_BHBT_TV_TTTBV = $("input[name='InputMoney-BHBT_TV_TTTBV']").val();
+                var Fee_BHBT_TTVV = $("input[name='TotalMoney-BHBT_TTTBV']").val();
+                var InputMoney_BHBT_TTTBV = $("input[name='InputMoney-BHBT_TTTBV']").val();
+                var Fee_BHBT_HoTroThuNhap = $("input[name='TotalMoney-BHBT_HoTroThuNhap']").val();
+                var InputMoney_BHBT_HoTroThuNhap = $("input[name='InputMoney-BHBT_HoTroThuNhap']").val();
+                var Insurance_FeeRecuring = $("#BMH_Insurance_FeeRecuring option:selected").text();
+                var TotalFee_Plan = $("input[name='PhiBaoHiemDuKien']").val();
+                var TotalFee_More = $("input[name='TongPhiBHBT']").val();
+                var TotalFee = $("input[name='TongPhiBHBT-SPC']").val();
+                var TuoiDaoHan = parseInt($("#BMH_AgeExpireID option:selected").text());
+                var ThoiHanDongPhiCoBan = $("#BMH_Insurance_DurationPaid").val();
+                var ThoiHanDongPhiDongThem = $("#BMH_Insurance_FeeTime").val();
+                var STBH_DoTaiNan = 0;
+                var ddlQuyenLoi = $("select[name='BMH_InterestId'] option:selected").index();
+                var HeSoBaoHiemBoSung = $("#AdditionalInsuranceMoneID option:selected").text();
+                var mode = {
+                    Code: Code,
+                    BuyFullName: BuyFullName,
+                    BuyGender: BuyGender,
+                    BuyAge: BuyAge,
+                    BuyBirthDay: BuyBirthDay,
+                    BeneficiaryFullName: BeneficiaryFullName,
+                    BeneficiaryGender: BeneficiaryGender,
+                    BeneficiaryBirthDay: BeneficiaryBirthDay,
+                    BeneficiaryAge: BeneficiaryAge,
+                    Insurance_Total: Insurance_Total,
+                    Insurance_FeeBase: Insurance_FeeBase,
+                    Insurance_FeeBaseMore: Insurance_FeeBaseMore,
+                    InputMoney_BHBT_BenhHiemNgheo: InputMoney_BHBT_BenhHiemNgheo,
+                    Fee_BHBT_BenhHiemNgheo: Fee_BHBT_BenhHiemNgheo,
+                    Fee_BHBT_NamVien: Fee_BHBT_NamVien,
+                    Fee_BHBT_BenhHiemNgheo_CI20: Fee_BHBT_BenhHiemNgheo_CI20,
+                    InputMoney_BHBT_BenhHiemNgheo_CI20: InputMoney_BHBT_BenhHiemNgheo_CI20,
+                    Fee_BHBT_TV_TTTBVV: Fee_BHBT_TV_TTTBVV,
+                    InputMoney_BHBT_TV_TTTBV: InputMoney_BHBT_TV_TTTBV,
+                    InputMoney_BHBT_TTTBV: InputMoney_BHBT_TTTBV,
+                    Fee_BHBT_TTVV: Fee_BHBT_TTVV,
+                    Fee_BHBT_HoTroThuNhap: Fee_BHBT_HoTroThuNhap,
+                    InputMoney_BHBT_HoTroThuNhap: InputMoney_BHBT_HoTroThuNhap,
+                    Insurance_FeeRecuring: Insurance_FeeRecuring,
+                    TotalFee_Plan: TotalFee_Plan,
+                    TotalFee_More: TotalFee_More,
+                    TotalFee: TotalFee,
+                    TuoiDaoHan: TuoiDaoHan,
+                    ThoiHanDongPhiCoBan: ThoiHanDongPhiCoBan,
+                    ThoiHanDongPhiDongThem: ThoiHanDongPhiDongThem,
+                    STBH_DoTaiNan: 0,
+                    QuyenLoi: ddlQuyenLoi,
+                    HeSoBaoHiemBoSung: HeSoBaoHiemBoSung
+                }
+                $.post('http://pdf.momtech.vn/pdf/api/v1.0/insurrance-api/gen-pdf', mode, function (data) {
+                    if (data.StatusCode == "00") {
+                        var urlPdf = "http://pdf.momtech.vn/pdf/api/v1.0/insurrance-api/view-pdf?code=" + mode.Code;
+                        $("#embed_pdf").attr("src", urlPdf);
+                    }
+                });
+            }
+            else {
+                $("#" + msg.Data).focus();
+                swal({ title: "Có lỗi xảy ra !", text: msg.Message, type: "error", confirmButtonText: "Ok" });
+            }
+        });
+
+    });
+
+    $("#illustration_pdf").click(function () {
+        $.post("/Illustration/Actions", $("#frmIllustration").serialize(), function (msg) {
+            if (msg.StatusCode === "00") {
+                var Code = $("#Code").val();
+                var BuyFullName = $("#BuyFullname").val();
+                var BuyGender = $("input[name='BuyGender']").val();
+                var BuyAge = $("#age2").val();
+                var BuyBirthDay = $("input[name='BuyBirthDay']").val();
+                var BeneficiaryFullName = $("input[name='BeneficiaryFullName']").val();
+                var BeneficiaryGender = $("input[name='BeneficiaryGender']").val();
+                var BeneficiaryBirthDay = $("input[name='BeneficiaryBirth']").val();
+                var BeneficiaryAge = $("#age1").val();
+                var Insurance_Total = $("input[name='BMH_Insurance_Total']").val();
+                var Insurance_FeeBase = $("input[name='BMH_Insurance_FeeBase']").val();
+                var Insurance_FeeBaseMore = $("input[name='BMH_Insurance_FeeBaseMore']").val();
+                var InputMoney_BHBT_BenhHiemNgheo = $("input[name='InputMoney-BHBT_BenhHiemNgheo']").val();
+                var Fee_BHBT_BenhHiemNgheo = $("input[name='TotalMoney-BHBT_BenhHiemNgheo']").val();
+                var Fee_BHBT_NamVien = $("input[name='TotalMoney-BHBT_NamVien']").val();
+                var Fee_BHBT_BenhHiemNgheo_CI20 = $("input[name='TotalMoney-BHBT_BenhHiemNgheo_CI20']").val();
+                var InputMoney_BHBT_BenhHiemNgheo_CI20 = $("input[name='InputMoney-BHBT_BenhHiemNgheo_CI20']").val();
+                var Fee_BHBT_TV_TTTBVV = $("input[name='TotalMoney-BHBT_TV_TTTBV']").val();
+                var InputMoney_BHBT_TV_TTTBV = $("input[name='InputMoney-BHBT_TV_TTTBV']").val();
+                var Fee_BHBT_TTVV = $("input[name='TotalMoney-BHBT_TTTBV']").val();
+                var InputMoney_BHBT_TTTBV = $("input[name='InputMoney-BHBT_TTTBV']").val();
+                var Fee_BHBT_HoTroThuNhap = $("input[name='TotalMoney-BHBT_HoTroThuNhap']").val();
+                var InputMoney_BHBT_HoTroThuNhap = $("input[name='InputMoney-BHBT_HoTroThuNhap']").val();
+                var Insurance_FeeRecuring = $("#BMH_Insurance_FeeRecuring option:selected").text();
+                var TotalFee_Plan = $("input[name='PhiBaoHiemDuKien']").val();
+                var TotalFee_More = $("input[name='TongPhiBHBT']").val();
+                var TotalFee = $("input[name='TongPhiBHBT-SPC']").val();
+                var TuoiDaoHan = parseInt($("#BMH_AgeExpireID option:selected").text());
+                var ThoiHanDongPhiCoBan = $("#BMH_Insurance_DurationPaid").val();
+                var ThoiHanDongPhiDongThem = $("#BMH_Insurance_FeeTime").val();
+                var STBH_DoTaiNan = 0;
+                var ddlQuyenLoi = $("select[name='BMH_InterestId'] option:selected").index();
+                var HeSoBaoHiemBoSung = $("#AdditionalInsuranceMoneID option:selected").text();
+
+                var mode = {
+                    Code: Code,
+                    BuyFullName: BuyFullName,
+                    BuyGender: BuyGender,
+                    BuyAge: BuyAge,
+                    BuyBirthDay: BuyBirthDay,
+                    BeneficiaryFullName: BeneficiaryFullName,
+                    BeneficiaryGender: BeneficiaryGender,
+                    BeneficiaryBirthDay: BeneficiaryBirthDay,
+                    BeneficiaryAge: BeneficiaryAge,
+                    Insurance_Total: Insurance_Total,
+                    Insurance_FeeBase: Insurance_FeeBase,
+                    Insurance_FeeBaseMore: Insurance_FeeBaseMore,
+                    InputMoney_BHBT_BenhHiemNgheo: InputMoney_BHBT_BenhHiemNgheo,
+                    Fee_BHBT_BenhHiemNgheo: Fee_BHBT_BenhHiemNgheo,
+                    Fee_BHBT_NamVien: Fee_BHBT_NamVien,
+                    Fee_BHBT_BenhHiemNgheo_CI20: Fee_BHBT_BenhHiemNgheo_CI20,
+                    InputMoney_BHBT_BenhHiemNgheo_CI20: InputMoney_BHBT_BenhHiemNgheo_CI20,
+                    Fee_BHBT_TV_TTTBVV: Fee_BHBT_TV_TTTBVV,
+                    InputMoney_BHBT_TV_TTTBV: InputMoney_BHBT_TV_TTTBV,
+                    InputMoney_BHBT_TTTBV: InputMoney_BHBT_TTTBV,
+                    Fee_BHBT_TTVV: Fee_BHBT_TTVV,
+                    Fee_BHBT_HoTroThuNhap: Fee_BHBT_HoTroThuNhap,
+                    InputMoney_BHBT_HoTroThuNhap: InputMoney_BHBT_HoTroThuNhap,
+                    Insurance_FeeRecuring: Insurance_FeeRecuring,
+                    TotalFee_Plan: TotalFee_Plan,
+                    TotalFee_More: TotalFee_More,
+                    TotalFee: TotalFee,
+                    TuoiDaoHan: TuoiDaoHan,
+                    ThoiHanDongPhiCoBan: ThoiHanDongPhiCoBan,
+                    ThoiHanDongPhiDongThem: ThoiHanDongPhiDongThem,
+                    STBH_DoTaiNan: 0,
+                    QuyenLoi: ddlQuyenLoi,
+                    HeSoBaoHiemBoSung: HeSoBaoHiemBoSung
+                }
+
+                $.post('http://pdf.momtech.vn/pdf/api/v1.0/insurrance-api/gen-pdf', mode, function (data) {
+                    if (data.StatusCode == "00") {
+                        //window.location.href = "http://107.20.107.109/API/maplife/api/v1.0/file/view-pdf?code=" + mode.Code;
+                        var urlPdf = "http://pdf.momtech.vn/pdf/api/v1.0/insurrance-api/view-pdf?code=" + mode.Code;
+                        bmh_url_pdf_file = urlPdf;
+                        window.open(urlPdf);
+                    }
+                });
+            }
+            else {
+                $("#" + msg.Data).focus();
+                swal({ title: "Có lỗi xảy ra !", text: msg.Message, type: "error", confirmButtonText: "Ok" });
+            }
+        });
+    });
+</script>

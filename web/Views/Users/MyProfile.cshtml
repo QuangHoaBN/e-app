@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body nbu">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <div class="m-content">
+            <div class="container">
+                <div class="m-content-box">
+                    <div class="m-portlet page-content-box">
+                        <div class="page-content-box-title">
+                            <h5>Thông tin cá nhân</h5>
+                        </div>
+                        <form class="m-form m-form--fit">
+                            <div class="m-portlet__body user-profile">
+                                <div class="form-group m-form__group row">
+                                    <div class="col-md-6">
+                                        <label for="txtFullname">Họ và tên<span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" id="txtFullname" aria-describedby="emailHelp" placeholder="Nhập Họ và tên">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="exampleInpuName">Ngày sinh<span class="required">*</span></label>
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control m-input datebirth" data-control-age="#age1" readonly="" placeholder="Chọn ngày" id="m_datepicker_1_validate" />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar-check-o"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Giới tính<span class="required">*</span></label>
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio">
+                                                <input type="radio" name="gender" value="1" checked> Nam
+                                                <span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <input type="radio" name="gender" value="2"> Nữ
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-md-4">
+                                        <label for="">Tổ chức<span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="">
+                                            <option>Maplife</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">Chức vụ<span class="required">*</span></label>
+                                        <select class="form-control m-bootstrap-select m-bootstrap-select--square m_selectpicker" title="">
+                                            <option>Tư vấn viên</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">Mã nhân viên<span class="required">*</span></label>
+                                        <input type="text" name="staff_code" class="form-control m-input" id="staff_code">
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-form__group row">
+                                    <div class="col-md-4">
+                                        <label for="">Số điện thoại<span class="required">*</span></label>
+                                        <input type="text" class="form-control m-input" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Email <span class="required">*</span></label>
+                                        <input type="email" class="form-control m-input" />
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="">Địa chỉ</label>
+                                        <input type="text" class="form-control m-input" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="m-portlet page-content-box">
+                        <div class="page-content-box-title">
+                            <h5>Thay đổi mật khẩu</h5>
+                        </div>
+                        <form class="m-form m-form--fit">
+                            <div class="m-portlet__body user-profile">
+                                <div class="form-group m-form__group row">
+                                    <div class="col-md-6">
+                                        <label for="">Mật khẩu hiện tại <span class="required">*</span></label>
+                                        <input type="password" class="form-control m-input">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-md-6">
+                                        <label for="">Mật khẩu mới <span class="required">*</span></label>
+                                        <input type="password" class="form-control m-input">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-md-6">
+                                        <label for="">Nhập lại mật khẩu mới <span class="required">*</span></label>
+                                        <input type="password" class="form-control m-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="submit-form">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#m_modal_6">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

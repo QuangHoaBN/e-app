@@ -1,0 +1,341 @@
+﻿/* Font Definitions */
+
+
+
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+{
+    margin-top: 0cm;
+    margin-right: 0cm;
+    margin-bottom: 8.0pt;
+    margin-left: 0cm;
+    line-height: 100%;
+    font-size: 12.0pt;
+    font-family: "Calibri" , "sans-serif";
+}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+{
+    margin: 0cm;
+    margin-bottom: .0001pt;
+    font-size: 12.0pt;
+    font-family: "Calibri" , "sans-serif";
+}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+{
+    margin: 0cm;
+    margin-bottom: .0001pt;
+    font-size: 12.0pt;
+    font-family: "Calibri" , "sans-serif";
+}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+{
+    margin: 0cm;
+    margin-bottom: .0001pt;
+    font-size: 8.0pt;
+    font-family: "Calibri" , "Tahoma" , "sans-serif";
+}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+{
+    margin-top: 0cm;
+    margin-right: 0cm;
+    margin-bottom: 10.0pt;
+    margin-left: 0pt;
+    line-height: 100%;
+    font-size: 12.0pt;
+    font-family: "Calibri" , "sans-serif";
+}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+{
+    margin-top: 0cm;
+    margin-right: 0cm;
+    margin-bottom: 0cm;
+    margin-left: 36.0pt;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Calibri" , "sans-serif";
+}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+{
+    margin-top: 0cm;
+    margin-right: 0cm;
+    margin-bottom: 0cm;
+    margin-left: 0pt;
+    line-height: 100%;
+    font-size: 12.0pt;
+    font-family: "Calibri" , "sans-serif";
+}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+{
+    margin-top: 0cm;
+    margin-right: 0cm;
+    margin-bottom: 10.0pt;
+    margin-left: 36.0pt;
+    line-height: 115%;
+    font-size: 12.0pt;
+    font-family: "Calibri" , "sans-serif";
+}
+span.BalloonTextChar
+{
+    font-family: "Tahoma" , "sans-serif";
+}
+span.HeaderChar
+{
+}
+span.FooterChar
+{
+}
+.MsoChpDefault
+{
+    font-family: "Calibri" , "sans-serif";
+}
+.MsoPapDefault
+{
+    margin-bottom: 10.0pt;
+    line-height: 115%;
+}
+/* Page Definitions */
+@page WordSection1
+{
+    margin: 4.5pt 14.4pt 4.5pt 12.25pt;
+}
+div.WordSection1
+{
+}
+/* List Definitions */
+ol
+{
+    margin-bottom: 0cm;
+}
+ul
+{
+    margin-bottom: 0cm;
+}
+
+.WordSection
+{
+    position: fixed;
+    width: 745pt;
+    height: auto;
+    margin: auto;
+}
+
+.edv3header
+{
+    float: left;
+    height: 100px;
+    width: 740pt;
+    margin-bottom: 1pt;
+    font-size: 12pt;
+}
+.edv3header_edu4
+{
+    float: left;
+    height: 80px;
+    width: 740pt;
+    margin-bottom: 1pt;
+    font-size: 12pt;
+}
+.logoprevoir
+{
+    float: left;
+    height: 72pt;
+    width: 160pt;
+}
+.logoproduct
+{
+    float: left;
+    height: 72pt;
+    width: 310pt;
+}
+
+.logoproduct_edu4
+{
+    float: left;
+    height: auto;
+    width: 576pt;
+}
+
+.prevoiraddress
+{
+    float: left;
+    height: 72pt;
+    width: 268pt;
+}
+.space
+{
+    float: left;
+    height: 10pt;
+    width: 740pt;
+}
+.space_QL
+{
+    float: left;
+    height: 5pt;
+    width: 740pt;
+}
+.spacetrang1
+{
+    float: left;
+    height: 60pt;
+    width: 730pt;
+}
+
+.spacetrang3
+{
+    float: left;
+    height: 50pt;
+    width: 730pt;
+}
+
+.spacetrang41
+{
+    float: left;
+    height: 185pt;
+    width: 740pt;
+}
+.spacetrang42
+{
+    float: left;
+    height: 120pt;
+    width: 730pt;
+}
+.spaceend
+{
+    float: left;
+    height: 80pt;
+    width: 730pt;
+}
+.spaceendtrang6
+{
+    float: left;
+    height: 90pt;
+    width: 730pt;
+}
+.csgridviewHeader
+{
+    color: #705c62;
+    font-family: Calibri,Arial;
+    border-top: solid #705C62 1.0pt;
+    padding: 0pt 5.4pt 0cm 5.4pt;
+    height: 12pt;
+    border-left: solid #705C62 1.0pt;
+    border-right: solid #705C62 1.0pt;
+    border-bottom: solid #705C62 1.0pt;
+}
+.csgridview_title
+{
+    font-family: Calibri,Arial;
+    color: #705c62;
+    border-top: solid #705C62 1.0pt;
+    padding: 0pt 5.4pt 0cm 5.4pt;
+    height: 12pt;
+    text-align: right;
+    border-left: solid #705C62 1.0pt;
+    border-right: solid #705C62 1.0pt;
+    border-bottom: solid #705C62 1.0pt;
+}
+.csgridview_title_2
+{
+    color: #705c62;
+    font-family: Calibri,Arial;
+    border-top: solid #705C62 1.0pt;
+    padding: 0pt 5.4pt 0cm 5.4pt;
+    height: 12pt;
+    text-align: center;
+    border-left: solid #705C62 1.0pt;
+    border-right: solid #705C62 1.0pt;
+    border-bottom: solid #705C62 1.0pt;
+}
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+
+.csgridviewHeader_edu4
+{
+    color: #705c62;
+    font-family: Calibri,Arial;
+    border-top: solid #705C62 1.0pt;
+    padding: 0pt 5.4pt 0cm 5.4pt;
+    height: 8pt;
+    border-left: solid #705C62 1.0pt;
+    border-right: solid #705C62 1.0pt;
+    border-bottom: solid #705C62 1.0pt;
+}
+
+
+.csgridview_title_edu4
+{
+    color: #705c62;
+    font-family: Calibri,Arial;
+    border-top: solid #705C62 1.0pt;
+    padding: 0pt 5.4pt 0cm 5.4pt;
+    height: 8pt;
+    text-align: center;
+    border-left: solid #705C62 1.0pt;
+    border-right: solid #705C62 1.0pt;
+    border-bottom: solid #705C62 1.0pt;
+}
+
+.csgridview_edu4
+{
+    font-family: Calibri,Arial;
+    color: #705c62;
+    border-top: solid #705C62 1.0pt;
+    padding: 0pt 5.4pt 0cm 5.4pt;
+    height: 8pt;
+    text-align: right;
+    border-left: solid #705C62 1.0pt;
+    border-right: solid #705C62 1.0pt;
+    border-bottom: solid #705C62 1.0pt;
+}
+
+.edv3header_edu3
+{
+    float: left;
+    height: 90px;
+    width: 740pt;
+    margin-bottom: 0cm;
+    margin-bottom: 1pt;
+    font-size: 12pt;
+}
+.space_edu4
+{
+    float: left;
+    height: 5pt;
+    width: 740pt;
+}
+
+.tableGridView
+{
+    width: 735pt;
+}
+.table_view_title
+{
+    width: 735pt;
+    border-left: solid #705C62 1.0pt;
+    border-right: solid #705C62 1.0pt;
+    border-top: solid #705C62 1.0pt;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 12pt;
+    font-family: Times New Roman;
+    color: #705C62;
+}
+.logoproduct_ul_header
+{
+    float: left;
+    height: 70pt;
+    width: 576pt;
+    border: solid #705C62 1.0pt;
+}
+.docaobang_trang06
+{
+    float: left;
+    height: 500pt;
+     border: 1px solid #fbeed5;
+}

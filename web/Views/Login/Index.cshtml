@@ -1,0 +1,171 @@
+﻿@model EApp.Model.LoginItem
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<!-- begin:: Page -->
+<div class="m-grid m-grid--hor m-grid--root m-page">
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-1" id="m_login" style="background-image: url(/Content/assets/images/bg-login.png);">
+        <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
+            <div class="m-login__container">
+                <div class="m-login__logo">
+                    <img src="/Content/assets/images/logo-big.png">
+                </div>
+                <div class="m-login__signin">
+                    <form class="m-login__form m-form" id="frmLogin" action="">
+                        <div class="form-group m-form__group">
+                            <label for="loginEmail">Tên đăng nhập/Mã số đại lý</label>
+                            <input class="form-control m-input" type="text" id="username" name="username" autocomplete="off">
+                        </div>
+                        <div class="form-group m-form__group m-password">
+                            <label for="loginPassword">Mật khẩu</label>
+                            <input class="form-control m-input" type="password" id="password" name="password">
+                            <div class="action">
+                                <a href="javascript:void(0)" onclick="showPass(this)">
+                                    <i class="fa fa-eye show-pass"></i>
+                                    <i class="fa fa-eye-slash hide-pass"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row m-login__form-sub">
+                            <div class="m--align-left m-login__form-left">
+                                <label class="m-checkbox  m-checkbox--light">
+                                    <input type="checkbox" name="remember" id="remember"> Ghi nhớ mật khẩu
+                                    <input type="hidden" name="IsRemember" id="IsRemember" value="0" />
+                                    <span></span>
+                                </label>
+                            </div>
+                            <div class="m--align-right m-login__form-right">
+                                <!-- <a href="javascript:Show:password();" id="m_login_forget_password" class="m-link">Quên mã truy cập/mật khẩu</a> -->
+                                <a href="" data-target="#modal_forgetpasss" data-toggle="modal">Quên mã truy cập/mật khẩu</a>
+                            </div>
+                        </div>
+                        @if (Model != null && Model.LoginFail >= 3)
+                        {
+                            <div class="m-login__form-captcha">
+                                <div class="input-group">
+                                    <div class="form-group captcha-text">
+                                        <input class="form-control m-input" type="text" id="loginCaptcha" name="captcha" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group captcha-image">
+                                        <div class="captcha-content">
+                                            <img id="imageRandom" title="mã xác nhận" alt="mã xác nhận" src="/showCaptchaImage?width=90&amp;height=34" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group captcha-actions">
+                                        <a onclick=" ChangeRandom();" class="btn btn-secondary"><i class="flaticon-refresh"></i></a>
+                                    </div>
+                                </div>
+                                <div class="m-form__help">
+                                    <span class="recaptcha_only_if_image">(Nếu đăng nhập sai trên 3 lần sẽ hiển thị captcha)</span>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="m-login__form-action">
+                            <button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">Đăng nhập</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="m-login__forget-password">
+                    <div class="m-login__head">
+                        <h3 class="m-login__title">Forgotten Password ?</h3>
+                        <div class="m-login__desc">Enter your email to reset your password:</div>
+                    </div>
+                    <form class="m-login__form m-form" action="">
+                        <div class="form-group m-form__group">
+                            <input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email" autocomplete="off">
+                        </div>
+                        <div class="m-login__form-action">
+                            <button id="m_login_forget_password_submit" class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">Request</button>&nbsp;&nbsp;
+                            <button id="m_login_forget_password_cancel" class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--cancel">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end:: Page -->
+<!-- begin Modal forgot password -->
+<div class="modal fade" id="modal_forgetpasss" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <div class="logo-img">
+                    <img src="assets/images/key-login.png" alt="">
+                </div> -->
+                <h5 class="modal-title" id="exampleModalLongTitle">Đăng kí lại mật khẩu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group m-form__group">
+                    <div class="m-input-img m-input-img--left">
+                        <input type="text" class="form-control m-input" placeholder="Nhập tài khoản">
+                        <span class="m-input-img m-input-img--left"><span><img src="assets/images/email.png" alt=""></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Gửi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/js/common.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script>
+
+    $("#remember").change(function () {
+        if ($(this).is(':checked')) {
+            $("#IsRemember").val(1);
+        }
+        else {
+            $("#IsRemember").val(0);
+        }
+    });
+    $("#frmLogin").validate({
+        rules: {
+            username:
+                {
+                    required: true,
+                },
+            password:
+                {
+                    required: true,
+                }
+        },
+        messages: {
+            username: {
+                required: "Bạn chưa nhập tên đăng nhập !",
+            },
+
+            Password: {
+                required: "Bạn chưa nhập mật khẩu !",
+            }
+        },
+        submitHandler: function () { //onSubmit
+
+            $.post("/Login/ProcessLogin", $("#frmLogin").serialize(), function (msg) {
+                console.log(msg);
+                if (msg.StatusCode === "00") {
+                    window.location.href = "/bang-minh-hoa"
+                }
+                else {
+                    swal({ title: "Có lỗi xảy ra !", text: msg.Message, type: "error", confirmButtonText: "Ok" });
+                    if (msg.StatusCode == "11") {
+                        $("#m-login__form-captcha").show();
+                    }
+                }
+            });
+            return false;
+        }
+    });
+
+</script>
